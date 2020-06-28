@@ -22,7 +22,7 @@ $user = 'root';
 
 $password = 'root';
 
-$pdo = new PDO($dsn,$user,$password); //3-1 データベースへ接続
+$pdo = new PDO($dsn,$user,$password); // データベースへ接続
 
 
 $sql = "CREATE TABLE tbKeijibann"
@@ -147,15 +147,15 @@ if(!empty($_POST["delnum"]) && !empty($_POST["dpass"])){ //削除フォームが
 
 
 ?>
-<!- 掲示板書き込みフォーム ->
+<!-- 掲示板書き込みフォーム -->
 
-<input type = "text"name = "name"placeholder="名前"value = <?php if(isset($sample) && $sample[1] == $editnum){echo $sample[2];}?>><br/><!-編集の番号が一致したらここに該当番号の名前を入力->
-<input type = "text"name = "comment"placeholder="コメント"value = <?php if(isset($sample) && $sample[1] == $editnum){echo $sample[3];}?>><br/><!-該当番号のコメントを入力->
+<input type = "text"name = "name"placeholder="名前"value = <?php if(isset($sample) && $sample[1] == $editnum){echo $sample[2];}?>><br/><!--編集の番号が一致したらここに該当番号の名前を入力-->
+<input type = "text"name = "comment"placeholder="コメント"value = <?php if(isset($sample) && $sample[1] == $editnum){echo $sample[3];}?>><br/><!--該当番号のコメントを入力-->
 <input type = "hidden"name = "editcon"value = <?php if (isset($sample) && $sample[1] == $editnum){echo $sample[1];}?>>
 <input type = "text"name = "pass"placeholder = "パスワード" ><br/>
 <input type = "submit"value="送信"><br/>
 
-<!- 　削除フォーム（番号、パスワード） ->
+<!-- 　削除フォーム（番号、パスワード） -->
 
 
 <input type = "text"name = "delnum"placeholder="削除番号"><br/>
@@ -163,7 +163,7 @@ if(!empty($_POST["delnum"]) && !empty($_POST["dpass"])){ //削除フォームが
 <input type = "submit"value = "削除"><br/>
 
 
-<!-　編集フォーム（番号、パスワード） ->
+<!--　編集フォーム（番号、パスワード） -->
 
 
 <input type = "text"name = "editnum"placeholder = "編集"><br/>
