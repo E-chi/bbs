@@ -2,12 +2,8 @@
 <html lang = "ja">
 	<head>
 		<meta charset="utf-8" />
-		<style>
-			body{
-				background-color: #ffbeda;
-			}
-		</style>
 		<title>掲示板</title>
+		<link rel = "sytlesheet" href = "keijibann.css">
 	</head>
 <body>
 <form action = "keijibann.php" method = "post">
@@ -70,6 +66,28 @@ if(!empty($name) && !empty($comment) && empty($_POST["editcon"]) && !empty($pass
 	fclose($fp);
 }
 
+
+if(isset($_POST["editnum"]) && isset($_POST["editpass"])){ //編集番号入力時の分岐
+	$editnum = $_POST["editnum"];
+	$editpass = $_POST["editpass"];
+
+
+       	foreach($lines as $val){
+		$content = explode("<>",$val);
+		
+		if($content[1] == $editnum){
+
+			if($content[4] == $editpass){
+			$sample = explode("<>",$val);
+			}
+		}
+	}
+	if($content[1] == $editnum && $content[4] != $editpass){
+	echo"パスワードが違います"."<br/>";
+	}
+
+} 
+
 if(!empty($_POST["editcon"])){ //editconが入力されていると更新
 	$newname = $_POST["name"];
 	$newcom = $_POST["comment"];
@@ -85,32 +103,12 @@ if(!empty($_POST["editcon"])){ //editconが入力されていると更新
 			fclose($fp);
 		}else{					//それ以外（一致するもの）は更新する
 			$fp = fopen($filename, 'a');
-			fwrite($fp, $date."<>".$_POST["editcon"]."<>".$newname."<>".$newcom."<>".$content[4]."\n");
+			fwrite($fp, $date."<>".$_POST["editcon"]."<>".$newname."<>".$newcom."<>".$content[4]."<>"."\n");
 			fclose($fp);
 		}
 	}
 }
 
-if(isset($_POST["editnum"]) && isset($_POST["editpass"])){ //編集番号入力時の分岐
-	$editnum = $_POST["editnum"];
-	$editpass = $_POST["editpass"];
-
-
-       	foreach($file as $val){
-		$content = explode("<>",$val);
-		
-		if($content[1] == $editnum){
-
-			if($content[4] == $editpass){
-			$sample = explode("<>",$val);
-			}
-		}
-	}
-	if($content[1] == $editnum && $content[4] != $editpass){
-	echo"パスワードが違います"."<br/>";
-	}
-
-} 
 
 
 
